@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>College Portal</h1>
+</header>
+<br/>
+<br/>
+<br/>
+
+
+<div class="login-container">
+    <div id="admin-login" class="login-section">
+        <form id="adminLoginForm" action="authenticateUsers" method="post">
+            <h2>Admin Login</h2>
+            <label for="adminUsername">Username:</label>
+            <input type="text" id="adminUsername" name="adminUsername" required>
+            <label for="adminPassword">Password:</label>
+            <input type="password" id="adminPassword" name="adminPassword" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="login-signup-container" class="login-section">
+        <!-- Login Form -->
+        <form id="studentloginForm" action="authenticateStudent" method="get" >
+            <h2>Student Login</h2>
+            <label for="studentUsername">Username:</label>
+            <input type="text" id="studentUsername" name="studentUsername" required>
+            <label for="studentPassword">Password:</label>
+            <input type="password" id="studentPassword" name="studentPassword" required>
+            <button type="submit">Login</button>
+        </form>
+        <!-- Signup Link -->
+        <p id="signupLink">Don't have an account? <a href="signup.jsp">Sign up here</a></p>
+    </div>
+
+    <div id="staff-login" class="login-section">
+        <form id="staffLoginForm">
+            <h2>Staff Login</h2>
+            <label for="staffUsername">Username:</label>
+            <input type="text" id="staffUsername" name="staffUsername" required>
+            <label for="staffPassword">Password:</label>
+            <input type="password" id="staffPassword" name="staffPassword" required>
+            <button type="button" onclick="staffLogin()">Login</button>
+        </form>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
