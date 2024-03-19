@@ -18,12 +18,12 @@
 
 <div class="login-container">
     <div id="admin-login" class="login-section">
-        <form id="adminLoginForm" action="authenticateUsers" method="post">
+        <form id="adminLoginForm" action="authenticateUsers" method="post" >
             <h2>Admin Login</h2>
             <label for="adminUsername">Username:</label>
-            <input type="text" id="adminUsername" name="adminUsername" required>
+            <input type="text" id="adminUsername" name="adminUsername" >
             <label for="adminPassword">Password:</label>
-            <input type="password" id="adminPassword" name="adminPassword" required>
+            <input type="password" id="adminPassword" name="adminPassword" required >
             <button type="submit">Login</button>
         </form>
     </div>
@@ -35,7 +35,7 @@
             <label for="studentUsername">Username:</label>
             <input type="text" id="studentUsername" name="studentUsername" required>
             <label for="studentPassword">Password:</label>
-            <input type="password" id="studentPassword" name="studentPassword" required>
+            <input type="password" id="studentPassword" name="studentPassword" >
             <button type="submit">Login</button>
         </form>
         <!-- Signup Link -->
@@ -43,13 +43,13 @@
     </div>
 
     <div id="staff-login" class="login-section">
-        <form id="staffLoginForm">
+        <form id="staffLoginForm" action="authenticateStaff" method="get">
             <h2>Staff Login</h2>
             <label for="staffUsername">Username:</label>
             <input type="text" id="staffUsername" name="staffUsername" required>
             <label for="staffPassword">Password:</label>
             <input type="password" id="staffPassword" name="staffPassword" required>
-            <button type="button" onclick="staffLogin()">Login</button>
+            <button type="submit" >Login</button>
         </form>
     </div>
 </div>

@@ -6,8 +6,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.abc.student.dao.AuthAdmin;
+import com.abc.student.dao.Student;
 
 
 /**
@@ -25,20 +27,24 @@ public class authenticateUsers extends HttpServlet{
 		String adminUsername=request.getParameter("adminUsername");
 		String adminPassword=request.getParameter("adminPassword");
 		try {
-			 res= auth.authenticateAdmin(adminUsername,adminPassword);
-		} catch (SQLException e) {
+			if(auth.authenticateAdmin(adminUsername,adminPassword)) {
+					List<Student> students = auth.getAllStudents();
+					 for (Student student : students) {
+			                System.out.println("Received Student: " + student.getRegistrationNumber() + ", " + student.getName() + ", " + student.getEmail() + ", " + student.getAttendance() + ", " + student.getPercentage() + ", " + student.getBranch());
+			            }
+					request.setAttribute("students", students);
+					System.out.println("Students attribute set in request: " + students);
+					request.getRequestDispatcher("studentDetails.jsp").forward(request, response);
+				}
+			else {
+				response.sendRedirect("index.html");
+			}
+		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(res)
-		{
-			out.println("Success");
-		}
-		else
-		{
-			out.println("fail");
-		}
-		out.println("Welcome to Admin Page");
+		 System.out.println("Reached the doGet() method of authenticateUsers servlet.");
+		 
 	
 	}
 	/**
@@ -48,5 +54,4 @@ public class authenticateUsers extends HttpServlet{
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

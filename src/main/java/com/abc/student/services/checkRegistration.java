@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class checkRegistration extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -40,11 +41,10 @@ public class checkRegistration extends HttpServlet {
 		
         if(res) {
         	try {
-        		String regisQuery = "SELECT registration_number, name, email, attendance, percentage, branch FROM studentdetails WHERE registration_number = ?";
+        		String regisQuery = "SELECT registration_number, name, email, attendance, percentage, branch FROM studentdetails WHERE registration_number = '" + registrationNumber +"'";
         		Connection con = db.getDBConn();
-        		PreparedStatement statement = con.prepareStatement(regisQuery);
-        		statement.setString(1, registrationNumber);
-        		ResultSet result = statement.executeQuery();
+        		Statement statement = con.createStatement();
+        	    ResultSet result = statement.executeQuery(regisQuery);
 
         		if (result.next()) {
         			request.setAttribute("name", result.getString("name"));
@@ -66,7 +66,7 @@ public class checkRegistration extends HttpServlet {
         		e.printStackTrace();
         	}
         }
-        else
+        /*else
         {
         	out.print("<html>"
                     + "<head>"
@@ -79,7 +79,7 @@ public class checkRegistration extends HttpServlet {
                     + "</body>"
                     + "</html>");
         	
-        }
+        }*/
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
